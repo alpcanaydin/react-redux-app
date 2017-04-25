@@ -1,1 +1,1 @@
-# React ve Redux ile Web Uygulaması Geliştirme - Ders 1
+# React ve Redux ile Web Uygulaması Geliştirme
