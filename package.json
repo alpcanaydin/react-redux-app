@@ -7,6 +7,7 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "codecov": "^2.1.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
@@ -33,6 +34,7 @@
     "format": "prettier --print-width=100 --single-quote --trailing-comma all --write \"{src,__tests__}/**/*.js\"",
     "lint-staged": "lint-staged",
     "test": "react-scripts test --env=jsdom",
+    "test:ci": "yarn run lint && yarn test && yarn run coverage",
     "coverage": "yarn run test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js",
     "postcoverage": "istanbul check-coverage --statements 90 --functions 90 --branches 90 --lines 90",
     "eject": "react-scripts eject"
