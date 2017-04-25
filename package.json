@@ -13,6 +13,8 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
+    "lint-staged": "^3.4.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.2.2",
     "react-scripts": "0.9.5",
     "stylelint": "^7.10.1",
@@ -22,7 +24,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint .",
+    "lint": "yarn run lint:eslint && yarn run lint:stylelint",
+    "format": "prettier --print-width=100 --single-quote --trailing-comma all --write \"{src,__tests__}/**/*.js\"",
+    "lint-staged": "lint-staged",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run format",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged"
 }
