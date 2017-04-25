@@ -7,14 +7,20 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "enzyme": "^2.8.2",
+    "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
+    "istanbul": "^0.4.5",
+    "lint-staged": "^3.4.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.2.2",
     "react-scripts": "0.9.5",
+    "react-test-renderer": "^15.5.4",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0"
   },
@@ -22,7 +28,25 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint .",
+    "lint": "yarn run lint:eslint && yarn run lint:stylelint",
+    "format": "prettier --print-width=100 --single-quote --trailing-comma all --write \"{src,__tests__}/**/*.js\"",
+    "lint-staged": "lint-staged",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "yarn run test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js",
+    "postcoverage": "istanbul check-coverage --statements 90 --functions 90 --branches 90 --lines 90",
     "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run format",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged",
+  "jest": {
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   }
 }
